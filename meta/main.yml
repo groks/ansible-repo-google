@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: groks
+  description: yum repositories for goole chrome, talkplugin, musicmanager, earth
+  license: BSD
+  min_ansible_version: 1.3
+
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+
+  categories:
+  - packaging
+
+dependencies: []

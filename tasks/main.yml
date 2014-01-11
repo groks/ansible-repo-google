@@ -1,0 +1,36 @@
+---
+
+#
+# This doesn't work due to an ansible bug with rpm_key:
+#
+#   https://github.com/ansible/ansible/issues/5452
+#
+# - name: google linux signing key
+#   rpm_key:
+#     state: present
+#     key: https://dl-ssl.google.com/linux/linux_signing_key.pub
+
+- name: disable whacky google-script repo check
+  copy:
+    dest: /etc/default/google-{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      repo_add_once="false"
+  with_items: repo_google_all
+
+- name: google yum repos
+  copy:
+    dest: /etc/yum.repos.d/google-{{ item }}.repo
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      [google-{{ item }}]
+      name=google-{{ item }} - $basearch
+      baseurl=http://dl.google.com/linux/{{ item }}/rpm/stable/$basearch
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+  with_items: repo_google_all
