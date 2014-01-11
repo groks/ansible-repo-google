@@ -1,7 +1,7 @@
 repo-google
 ========
 
-An [ansible role](https://galaxy.ansibleworks.com) to install
+An [ansible role](https://galaxy.ansibleworks.com/list#/roles/200) to install
 the following yum repositories for Google software:
 
 - [google-chrome](https://www.google.com/intl/en/chrome/browser/)
@@ -37,7 +37,7 @@ An installation of Fedora, RedHat, CentOS etc.
 Role Variables
 --------------
 
-The repos in the list variable `repo_google_all` will be installed and enabld,
+The repos in the list variable `repo_google_all` will be installed and enabled,
 which by default is all of them:
 
     repo_google_all:
