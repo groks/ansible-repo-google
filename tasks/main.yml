@@ -18,6 +18,7 @@
     mode: 0644
     content: |
       repo_add_once="false"
+  sudo: True
   with_items: repo_google_all
 
 - name: google yum repos
@@ -33,4 +34,5 @@
       enabled=1
       gpgcheck=1
       gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+  sudo: True
   with_items: repo_google_all
