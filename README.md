@@ -9,7 +9,7 @@ the following yum repositories for Google software:
 - [google-musicmanager](https://play.google.com/music/listen#/manager)
 - [google-earth](http://www.google.com/earth/)
 
-After enabling the role you must explicitly install the packages you want:
+After enabling the role you **must** explicitly install the packages you want:
 
     ---
     - hosts: localhost
@@ -19,15 +19,17 @@ After enabling the role you must explicitly install the packages you want:
 
       tasks:
         - name: install google software
-          yum: name={{ item }} state=present
+          dnf: name={{ item }} state=present
           with_items:
-            - google-chrome
+            - google-chrome-stable
+            - google-chrome-beta
+            - google-chrome-unstable
             - google-talkplugin
             - google-musicmanager
 
 Get a list of the available packages by running the following command:
 
-    yum --disablerepo='*' --enablerepo='*google*' list available
+    dnf --disablerepo='*' --enablerepo='*google*' list available
 
 Requirements
 ------------
