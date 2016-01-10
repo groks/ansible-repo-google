@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  vars:
+    repo_google_all:
+      - chrome
+
+  roles:
+    - ansible-repo-google
+
+  tasks:
+    - name: install google software
+      yum: name={{ item }} state=latest
+      with_items:
+        - google-chrome-stable
