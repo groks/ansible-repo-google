@@ -30,7 +30,7 @@
     content: |
       [google-{{ item }}]
       name=google-{{ item }} - $basearch
-      baseurl=http://dl.google.com/linux/{{ item }}/rpm/stable/$basearch
+      baseurl=http://dl.google.com/linux/{{ item }}/rpm/stable/{{ ansible_architecture }}
       enabled=1
       gpgcheck=1
       gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
