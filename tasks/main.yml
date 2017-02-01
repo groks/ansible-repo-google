@@ -4,7 +4,7 @@
   rpm_key:
     state: present
     key: https://dl-ssl.google.com/linux/linux_signing_key.pub
-  sudo: True
+  become: yes
 
 - name: disable whacky google-script repo check
   copy:
@@ -15,7 +15,7 @@
     content: |
       repo_add_once="false"
       REPOCONFIG=""
-  sudo: True
+  become: yes
   with_items: repo_google_all
 
 - name: google yum repos
@@ -31,5 +31,5 @@
       enabled=1
       gpgcheck=1
       gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
-  sudo: True
+  become: yes
   with_items: repo_google_all
