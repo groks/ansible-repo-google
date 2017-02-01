@@ -1,10 +1,10 @@
 repo-google
 ========
 
-An [ansible role](https://galaxy.ansible.com/list#/roles/200) to install
+An [ansible role](https://galaxy.ansible.com/groks/repo-google/) to install
 the following yum repositories for Google software:
 
-- [google-chrome](https://www.google.com/intl/en/chrome/browser/)
+- [google-chrome](https://www.google.com/intl/en/chrome/browser/desktop/index.html)
 - [google-talkplugin](https://www.google.com/tools/dlpage/hangoutplugin)
 - [google-musicmanager](https://play.google.com/music/listen#/manager)
 - [google-earth](http://www.google.com/earth/)
