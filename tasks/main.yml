@@ -1,10 +1,14 @@
 ---
 
-- name: google linux signing key
+- name: google linux signing keys
   rpm_key:
     state: present
-    key: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    key: "{{ item }}"
   become: yes
+  with_items:
+  - https://dl-ssl.google.com/linux/linux_signing_key.pub
+  - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+  - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 
 - name: disable whacky google-script repo check
   copy:
@@ -16,9 +20,9 @@
       repo_add_once="false"
       REPOCONFIG=""
   become: yes
-  with_items: repo_google_all
+  with_items: "{{ repo_google_all }}"
 
-- name: google yum repos
+- name: google apps yum repos
   copy:
     dest: /etc/yum.repos.d/google-{{ item }}.repo
     owner: root
@@ -32,4 +36,23 @@
       gpgcheck=1
       gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
   become: yes
-  with_items: repo_google_all
+  with_items: "{{ repo_google_all }}"
+  when: 'item != "cloud-sdk"'
+
+- name: google cloud sdk yum repo
+  copy:
+    dest: /etc/yum.repos.d/google-cloud-sdk.repo
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      [google-cloud-sdk]
+      name=Google Cloud SDK - x86_64
+      baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+      enabled=1
+      gpgcheck=1
+      repo_gpgcheck=1
+      gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+             https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  become: yes
+  when: '"cloud-sdk" in repo_google_all'

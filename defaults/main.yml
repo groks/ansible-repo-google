@@ -5,3 +5,4 @@ repo_google_all:
   - talkplugin
   - musicmanager
   - earth
+  - cloud-sdk

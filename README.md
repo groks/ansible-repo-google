@@ -8,6 +8,7 @@ the following yum repositories for Google software:
 - [google-talkplugin](https://www.google.com/tools/dlpage/hangoutplugin)
 - [google-musicmanager](https://play.google.com/music/listen#/manager)
 - [google-earth](http://www.google.com/earth/)
+- [google-cloud-sdk](https://cloud.google.com/sdk/downloads#yum)
 
 After enabling the role you **must** explicitly install the packages you want:
 
@@ -26,6 +27,12 @@ After enabling the role you **must** explicitly install the packages you want:
             - google-chrome-unstable
             - google-talkplugin
             - google-musicmanager
+            - google-cloud-sdk
+            - google-cloud-sdk-app-engine-python
+            - google-cloud-sdk-datastore-emulator
+            - google-cloud-sdk-pubsub-emulator
+            - kubectl
+
 
 Get a list of the available packages by running the following command:
 
@@ -47,6 +54,7 @@ which by default is all of them:
       - talkplugin
       - musicmanager
       - earth
+      - cloud-sdk
 
 You can set this list to a subset of those available. For example:
 
